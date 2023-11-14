@@ -48,7 +48,7 @@ echo "\"reportUrl\":\"${S3_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}\"," >> executor.
 echo "\"buildUrl\":\"https://github.com/${INPUT_GITHUB_REPO}/actions/runs/${INPUT_GITHUB_RUN_ID}\"," >> executor.json
 echo "\"buildName\":\"GitHub Actions Run #${INPUT_GITHUB_RUN_ID}\",\"buildOrder\":\"${INPUT_GITHUB_RUN_NUM}\"}" >> executor.json
 cat executor.json
-#mv ./executor.json ./${INPUT_ALLURE_RESULTS}
+mv ./executor.json ./${INPUT_ALLURE_RESULTS}
 
 #environment.properties
 echo "URL=${S3_WEBSITE_URL}" >> ./${INPUT_ALLURE_RESULTS}/environment.properties
