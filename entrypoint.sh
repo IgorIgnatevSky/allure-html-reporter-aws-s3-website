@@ -41,13 +41,13 @@ if [[ ${INPUT_REPORT_URL} != '' ]]; then
     S3_WEBSITE_URL="${INPUT_REPORT_URL}"
 fi
 #echo "executor.json"
-echo '{"name":"GitHub Actions","type":"github","reportName":"Allure Report with history",' > executor.json
-echo "\"url\":\"${GITHUB_PAGES_WEBSITE_URL}\"," >> executor.json # ???
-echo "\"reportUrl\":\"${GITHUB_PAGES_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}/\"," >> executor.json
-echo "\"buildUrl\":\"https://github.com/${INPUT_GITHUB_REPO}/actions/runs/${INPUT_GITHUB_RUN_ID}\"," >> executor.json
-echo "\"buildName\":\"GitHub Actions Run #${INPUT_GITHUB_RUN_ID}\",\"buildOrder\":\"${INPUT_GITHUB_RUN_NUM}\"}" >> executor.json
+#echo '{"name":"GitHub Actions","type":"github","reportName":"Allure Report with history",' > executor.json
+#echo "\"url\":\"${GITHUB_PAGES_WEBSITE_URL}\"," >> executor.json # ???
+#echo "\"reportUrl\":\"${GITHUB_PAGES_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}/\"," >> executor.json
+#echo "\"buildUrl\":\"https://github.com/${INPUT_GITHUB_REPO}/actions/runs/${INPUT_GITHUB_RUN_ID}\"," >> executor.json
+#echo "\"buildName\":\"GitHub Actions Run #${INPUT_GITHUB_RUN_ID}\",\"buildOrder\":\"${INPUT_GITHUB_RUN_NUM}\"}" >> executor.json
 #cat executor.json
-mv ./executor.json ./${INPUT_ALLURE_RESULTS}
+#mv ./executor.json ./${INPUT_ALLURE_RESULTS}
 
 #environment.properties
 echo "URL=${S3_WEBSITE_URL}" >> ./${INPUT_ALLURE_RESULTS}/environment.properties
@@ -60,7 +60,7 @@ ls -l ${INPUT_ALLURE_REPORT}
 
 echo "copy allure-report to ${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NUM}"
 cp -r ./${INPUT_ALLURE_REPORT}/. ./${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NUM}
-echo "copy allure-report history to /${INPUT_ALLURE_HISTORY}/last-history"
+#echo "copy allure-report history to /${INPUT_ALLURE_HISTORY}/last-history"
 # cp -r ./${INPUT_ALLURE_REPORT}/history/. ./${INPUT_ALLURE_HISTORY}/last-history
 
 # #echo "index.html"
@@ -79,8 +79,8 @@ echo "</html>" >> ./${INPUT_ALLURE_HISTORY}/index.html;
 # cat ./${INPUT_ALLURE_HISTORY}/index.html
 
 
-echo "copy allure-results to ${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NUM}"
-cp -R ./${INPUT_ALLURE_RESULTS}/. ./${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NUM}
+#echo "copy allure-results to ${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NUM}"
+#cp -R ./${INPUT_ALLURE_RESULTS}/. ./${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NUM}
 
 set -e
 
