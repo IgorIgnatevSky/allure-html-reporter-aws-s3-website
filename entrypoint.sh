@@ -44,7 +44,7 @@ fi
 echo "executor.json"
 echo '{"name":"GitHub Actions", "type":"github", "reportName":"Allure Report with history",' > executor.json
 echo "\"url\":\"${S3_WEBSITE_URL}\"," >> executor.json # ???
-echo "\"reportUrl\":\"${S3_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}/\"," >> executor.json
+echo "\"reportUrl\":\"${S3_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}\"," >> executor.json
 echo "\"buildUrl\":\"https://github.com/${INPUT_GITHUB_REPO}/actions/runs/${INPUT_GITHUB_RUN_ID}\"," >> executor.json
 echo "\"buildName\":\"GitHub Actions Run #${INPUT_GITHUB_RUN_ID}\",\"buildOrder\":\"${INPUT_GITHUB_RUN_NUM}\"}" >> executor.json
 cat executor.json
@@ -72,7 +72,7 @@ cp -r ./${INPUT_ALLURE_REPORT}/. ./${INPUT_ALLURE_HISTORY}/${INPUT_GITHUB_RUN_NU
 cat index-template.html > ./${INPUT_ALLURE_HISTORY}/index.html
 
 echo "├── <a href="./${INPUT_GITHUB_RUN_NUM}/index.html">Latest Test Results - RUN ID: ${INPUT_GITHUB_RUN_NUM}</a><br>" >> ./${INPUT_ALLURE_HISTORY}/index.html;
-sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" |  grep "PRE" | sed 's/PRE //' | sed 's/.$//' | sort -nr | while read line;
+sh -c "aws s3 ls s3://${AWS_S3_BUCKET}/" |  grep "PRE" | sed 's/PRE //' | sed 's/.$//' | sort -nr | while read line;
     do
         echo "├── <a href="./"${line}"/">RUN ID: "${line}"</a><br>" >> ./${INPUT_ALLURE_HISTORY}/index.html; 
     done;
